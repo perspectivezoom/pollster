@@ -1,0 +1,7 @@
+<h1>Create a poll</h1>
+<br />
+<%= form_for @poll do |f| %>
+  <%= f.text_field :name, :placeholder => 'Poll Name' %>
+  <br />
+  <%= f.submit :class => "btn btn-primary"%>
+<% end %>

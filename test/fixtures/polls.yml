@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  maker_key: MyString
+  taker_key: MyString
+  name: MyString
+
+two:
+  maker_key: MyString
+  taker_key: MyString
+  name: MyString
