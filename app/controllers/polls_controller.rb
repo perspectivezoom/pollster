@@ -1,5 +1,8 @@
 class PollsController < ApplicationController
 
+  before_filter :load_poll, :only => [:edit, :show, :update]
+  before_filter :authenticate_maker, :only => [:edit, :update]
+
   def new
     @poll = Poll.new
   end
@@ -13,8 +16,23 @@ class PollsController < ApplicationController
     end
   end
 
-  def show
-    @poll = Poll.find_by_taker_key(params[:id])
+  def edit
+    
   end
 
+  def show
+    
+  end
+
+  private
+
+    def load_poll
+      @poll = Poll.find_by_taker_key(params[:id])
+    end
+
+    def authenticate_maker
+      unless params[:maker_key] == @poll.maker_key
+        redirect_to poll_path(@poll)
+      end
+    end
 end
