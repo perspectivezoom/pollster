@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  poll_id: 1
+  question_text: MyString
+  type: 
+  possible_responses: MyString
+
+two:
+  poll_id: 1
+  question_text: MyString
+  type: 
+  possible_responses: MyString

@@ -1,0 +1,3 @@
+$('<%= "#question-#{@question.id}" -%>').html(
+    '<%=j render(:partial =>'common/flash', :locals => { :flash => flash } ) -%>
+    <%=j render(:partial =>'common/question_with_edit', :locals => {:question_with_edit => @question }) %>')

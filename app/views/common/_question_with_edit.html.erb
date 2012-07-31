@@ -1,0 +1,25 @@
+<div class="well form-inline" style="padding-bottom:0px;" id=<%= "question-#{question_with_edit.id}" -%> >
+  <%= form_for question_with_edit, :method => 'put' , :url => question_path(question_with_edit), :remote => true do |f| %>
+
+    <%= f.text_field :question_text, { :value => question_with_edit.question_text, :class=> "giant" } %>
+    <br /><br />
+    <%= f.radio_button :question_type, "free_response", :checked => question_with_edit.question_type == 'free_response' -%>
+    <%= label_tag(nil, "Free Response") %>
+    <br />
+    <%= f.radio_button :question_type, "multiple_choice", :checked => question_with_edit.question_type == 'multiple_choice' -%>
+    <%= label_tag(nil, "Multiple Choice") %>
+    <br /><br />
+
+    <div class="possible_responses">
+      <%= f.text_field( :possible_responses, {:placeholder => 'Because of light refraction;Because of rainbows;Because I hate you', :style => "width:600px" } ) %>
+      <br /><br />
+    </div>
+
+    <%= f.submit "Update Question", :class => "btn btn-primary" -%>
+    
+  <% end %>
+  <%= form_for question_with_edit, :method => 'delete' , :url => question_path(question_with_edit), :remote => true do |f| %>
+    <%= f.submit "Delete Question (Cannot be undone)", :class => "btn btn-danger"%>
+  <% end %>
+  
+</div>

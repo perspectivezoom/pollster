@@ -1,2 +1,6 @@
 <h1>Poll: <%= @poll.name %> </h1>
 <h4>Public link: <%= link_to "http://#{request.host}:#{request.port}#{poll_path(@poll)}" %></h4>
+
+<div id="questions">
+  <%= render :partial => "common/question", :collection => @poll.questions %>
+</div>

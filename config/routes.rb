@@ -2,6 +2,7 @@ Pollster::Application.routes.draw do
 
   root :to => 'polls#new'
   resources :polls
+  resources :questions
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

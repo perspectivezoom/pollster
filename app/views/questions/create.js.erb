@@ -1,0 +1,7 @@
+<% if flash[:error] %>
+  $("#new_question").prepend(
+      "<%=j render(:partial =>'common/flash', :locals => {:flash => flash}) %>" )
+<% else %>
+  $("#questions").prepend(
+      "<%=j render(:partial =>'common/question_with_edit', :locals => {:question_with_edit => @question }) %>")
+<% end %>

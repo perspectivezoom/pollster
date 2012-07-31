@@ -1,5 +1,5 @@
 <h1>Poll: <%= @poll.name %> </h1>
-
+<br />
 <div class="row">
   <div class="span2">
     <strong>Public link:</strong>
@@ -8,6 +8,7 @@
     <%= link_to "http://#{request.host}:#{request.port}#{poll_path(@poll)}" %>
   </div>
 </div>
+
 <div class="row">
   <div class="span2">
     <strong>Edit link:</strong>
@@ -15,4 +16,32 @@
   <div class="span10">
    <%= link_to nil, "http://#{request.host}:#{request.port}#{edit_poll_path(@poll, :maker_key => @poll.maker_key)}" %> <br /><em>Do not give the edit link to anyone untrustworthy</em>
   </div>
+</div>
+<br />
+<br />
+
+<h2>Add A Question</h2>
+<div class="well form-inline" style="padding-bottom:0px;" id="new_question">
+  <%= form_for @question, :remote => true do |f| %>
+    <%= f.radio_button :question_type, "free_response", :checked => true -%>
+    <%= label_tag(nil, "Free Response") %>
+    <br />
+    <%= f.radio_button :question_type, "multiple_choice" -%>
+    <%= label_tag(nil, "Multiple Choice") %>
+    <br /><br />
+
+    <%= f.text_field :question_text, { :placeholder => 'Why is the sky blue?', :class => "giant" } %>
+    <br /><br />
+
+    <div id="new_multiple_choice">
+      <%= f.text_field( :possible_responses, {:placeholder => 'Because of light refraction;Because of rainbows;Because I hate you', :style => "width:600px" } ) %>
+      <br /><br />
+    </div>
+    <%= f.hidden_field :poll_id, :value => @poll.id %>
+    <%= f.submit :class => "btn btn-primary"%>
+  <% end %>
+</div>
+<h2>Poll Questions</h2>
+<div id="questions">
+  <%= render :partial => "common/question_with_edit", :collection => @questions %>
 </div>

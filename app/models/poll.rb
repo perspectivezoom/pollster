@@ -5,6 +5,8 @@ class Poll < ActiveRecord::Base
 
   before_validation :generate_keys
 
+  has_many :questions
+
   def to_param
     self.taker_key
   end

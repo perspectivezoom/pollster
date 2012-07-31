@@ -1,0 +1,6 @@
+<% unless flash[:error] %>
+  $('<%= "#question-#{@question.id}" -%>').html('')
+<% else %>
+  $('<%= "#question-#{@question.id}" -%>').prepend(
+    "<%=j render(:partial =>'common/flash', :locals => {:flash => flash}) %>" )
+<% end %>

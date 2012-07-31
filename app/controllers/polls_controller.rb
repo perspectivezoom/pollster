@@ -11,7 +11,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(params[:poll])
     if @poll.save
       flash[:success] = 'Poll created. Time to create some questions'
-      redirect_to poll_path(@poll)
+      redirect_to edit_poll_path(@poll, :maker_key => @poll.maker_key)
     else
       flash[:error] = @poll.errors.full_messages.first
       redirect_to :back
@@ -19,6 +19,11 @@ class PollsController < ApplicationController
   end
 
   def edit
+    @questions = @poll.questions.dup
+    @question = @poll.questions.new
+  end
+
+  def update
     if @poll.update_attributes(params[:poll])
       flash[:sucess] = 'Poll edited'
       redirect_to poll_path(@poll)
