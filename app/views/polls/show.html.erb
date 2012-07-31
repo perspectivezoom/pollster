@@ -1,6 +1,27 @@
 <h1>Poll: <%= @poll.name %> </h1>
 <h4>Public link: <%= link_to "http://#{request.host}:#{request.port}#{poll_path(@poll)}" %></h4>
+<br />
 
-<div id="questions">
-  <%= render :partial => "common/question", :collection => @poll.questions %>
-</div>
+
+<% if cookies[@poll.taker_key] %>
+  <em>You've already responded to this poll</em><br />
+<% end %>
+<br />
+
+<!-- Serious Rails Magic going on here: http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-fields_for -->
+<%= form_for @response do |response| %>
+  <% @response.answers.each do |answer| %>
+    <%= response.fields_for :answers, answer do |f| %>
+      <%= render :partial => "common/answer_form", :locals => { :answer_form => answer, :f => f } %>
+    <% end %>
+  <% end %>
+  <br />
+  <%= response.hidden_field :poll_id, :value => @response.poll_id %>
+
+
+  <% if cookies[@poll.taker_key] %>
+    <a class="btn disabled">A response was already submitted</a>
+  <% else %>
+    <%= response.submit "Submit Answers", :class => "btn btn-success" %>
+  <% end %>
+<% end %>

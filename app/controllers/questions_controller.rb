@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
       if @question.update_attributes(params[:question])
         flash[:error] = nil
         flash[:success] = 'Question Updated'
-        format.js
+        format.js 
       else
         flash[:error] = @question.errors.full_messages.first
         format.js
@@ -41,4 +41,5 @@ class QuestionsController < ApplicationController
       end
     end
   end
+
 end

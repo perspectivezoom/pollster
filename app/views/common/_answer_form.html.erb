@@ -1,0 +1,13 @@
+<div class="form-inline">
+  <h3> <%= answer_form.question.question_text %> </h3>
+  <% if answer_form.question.question_type == 'multiple_choice' %>
+    <% answer_form.question.possible_responses.split(';').each do |choice| %>
+      <%= f.radio_button :answer_text, choice -%>
+      <%= f.label choice %> 
+      <br />
+    <% end %>
+  <% else %>
+    <%= f.text_area :answer_text %>
+  <% end %>
+  <%= f.hidden_field :question_id, :value => answer_form.question_id %>
+</div><br />

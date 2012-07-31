@@ -1,4 +1,4 @@
-<div class="well form-inline" style="padding-bottom:0px;" id=<%= "question-#{question_with_edit.id}" -%> >
+<div class="well form-inline" id=<%= "question-#{question_with_edit.id}" -%> >
   <%= form_for question_with_edit, :method => 'put' , :url => question_path(question_with_edit), :remote => true do |f| %>
 
     <%= f.text_field :question_text, { :value => question_with_edit.question_text, :class=> "giant" } %>
@@ -20,6 +20,11 @@
   <% end %>
   <%= form_for question_with_edit, :method => 'delete' , :url => question_path(question_with_edit), :remote => true do |f| %>
     <%= f.submit "Delete Question (Cannot be undone)", :class => "btn btn-danger"%>
+  <% end %>
+  <h4><%= pluralize question_with_edit.answers.count, 'Response' %></h4>
+
+  <% question_with_edit.answers.each do |answer| %>
+    <div> <%= answer.answer_text %> </div>
   <% end %>
   
 </div>

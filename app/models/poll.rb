@@ -5,7 +5,8 @@ class Poll < ActiveRecord::Base
 
   before_validation :generate_keys
 
-  has_many :questions
+  has_many :questions, :dependent => :destroy
+  has_many :responses, :dependent => :destroy
 
   def to_param
     self.taker_key

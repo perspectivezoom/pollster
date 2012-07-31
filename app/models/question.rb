@@ -4,4 +4,5 @@ class Question < ActiveRecord::Base
   validates_presence_of :question_text
 
   belongs_to :poll
+  has_many :answers, :dependent => :destroy
 end

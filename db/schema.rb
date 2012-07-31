@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730231410) do
+ActiveRecord::Schema.define(:version => 20120731171119) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "response_id"
+    t.integer  "question_id"
+    t.text     "answer_text"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "polls", :force => true do |t|
     t.string   "maker_key"
@@ -28,6 +36,12 @@ ActiveRecord::Schema.define(:version => 20120730231410) do
     t.string   "possible_responses"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "responses", :force => true do |t|
+    t.integer  "poll_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

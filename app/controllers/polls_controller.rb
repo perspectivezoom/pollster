@@ -34,6 +34,10 @@ class PollsController < ApplicationController
   end
 
   def show
+    @response = @poll.responses.new
+    @poll.questions.each do |q|
+      @response.answers.new(:question_id => q.id)
+    end
   end
 
   private
