@@ -1,19 +1,19 @@
 <h1>Poll: <%= @poll.name %> </h1>
 <br />
 <div class="row">
-  <div class="span2">
-    <strong>Public link:</strong>
+  <div class="span3">
+    <h3>Public link:</h3>
   </div>
-  <div class="span10">
-    <%= link_to "http://#{request.host}:#{request.port}#{poll_path(@poll)}" %>
+  <div class="span9">
+    <h3><%= link_to nil, "http://#{request.host}:#{request.port}#{poll_path(@poll)}" %></h3>
   </div>
 </div>
 
 <div class="row">
-  <div class="span2">
-    <strong>Edit link:</strong>
+  <div class="span3">
+    <strong>Edit/View Responses link:</strong>
   </div>
-  <div class="span10">
+  <div class="span9">
    <%= link_to nil, "http://#{request.host}:#{request.port}#{edit_poll_path(@poll, :maker_key => @poll.maker_key)}" %> <br /><em>Do not give the edit link to anyone untrustworthy</em>
   </div>
 </div>
@@ -21,7 +21,7 @@
 <br />
 
 <h2>Add A Question</h2>
-<div class="well form-inline" style="padding-bottom:0px;" id="new_question">
+<div class="well question form-inline" style="padding-bottom:0px;" id="new_question">
   <%= form_for @question, :remote => true do |f| %>
     <%= f.radio_button :question_type, "free_response", :checked => true -%>
     <%= label_tag(nil, "Free Response") %>
@@ -33,7 +33,8 @@
     <%= f.text_field :question_text, { :placeholder => 'Why is the sky blue?', :class => "giant" } %>
     <br /><br />
 
-    <div id="new_multiple_choice">
+    <div class="possible_responses" style="display:none">
+      <%= f.label "Multiple Choice Values (Separate with a semicolon)" %>
       <%= f.text_field( :possible_responses, {:placeholder => 'Because of light refraction;Because of rainbows;Because I hate you', :style => "width:600px" } ) %>
       <br /><br />
     </div>

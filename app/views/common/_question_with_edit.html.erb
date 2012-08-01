@@ -1,4 +1,4 @@
-<div class="well form-inline" id=<%= "question-#{question_with_edit.id}" -%> >
+<div class="well question form-inline" id=<%= "question-#{question_with_edit.id}" -%> >
   <%= form_for question_with_edit, :method => 'put' , :url => question_path(question_with_edit), :remote => true do |f| %>
 
     <%= f.text_field :question_text, { :value => question_with_edit.question_text, :class=> "giant" } %>
@@ -10,7 +10,8 @@
     <%= label_tag(nil, "Multiple Choice") %>
     <br /><br />
 
-    <div class="possible_responses">
+    <div class="possible_responses", style="display:none;">
+      <%= f.label "Multiple Choice Values (Separate with a semicolon)" %>
       <%= f.text_field( :possible_responses, {:placeholder => 'Because of light refraction;Because of rainbows;Because I hate you', :style => "width:600px" } ) %>
       <br /><br />
     </div>

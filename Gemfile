@@ -6,6 +6,7 @@ gem 'rails', '3.2.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'thin'
 
 
 # Gems used only for assets and not required
@@ -23,6 +24,7 @@ end
 group :development do
   gem 'rspec-rails'
   gem 'simplecov'
+  
 end
 
 gem 'jquery-rails'
