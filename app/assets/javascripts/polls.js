@@ -7,4 +7,4 @@ $(function() {
       $(this).siblings('.possible_responses').css('display','block');
     }
   })
-})
+});
