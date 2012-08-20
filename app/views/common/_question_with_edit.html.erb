@@ -10,7 +10,7 @@
     <%= label_tag(nil, "Multiple Choice") %>
     <br /><br />
 
-    <div class="possible_responses", style="display:none;">
+    <div class="possible_responses", <%= question_with_edit.question_type == 'multiple_choice' ? "style='display:block;'" : "style='display:none;'" %> >
       <%= f.label "Multiple Choice Values (Separate with a semicolon)" %>
       <%= f.text_field( :possible_responses, {:placeholder => 'Because of light refraction;Because of rainbows;Because I hate you', :style => "width:600px" } ) %>
       <br /><br />
